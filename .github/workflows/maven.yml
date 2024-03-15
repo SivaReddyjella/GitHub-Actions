@@ -1,0 +1,37 @@
+name: Maven Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Compile and Clean
+        run: mvn clean compile
+        working-directory: src  # Assuming pom.xml is in src directory
+
+      - name: Test
+        run: mvn test site
+        working-directory: src  # Assuming pom.xml is in src directory
+
+      - name: Deploy
+        run: mvn package
+        working-directory: src  # Assuming pom.xml is in src directory
+
+      - name: Archiving
+        uses: actions/upload-artifact@v2
+        with:
+          name: jar-files
+          path: src/target/*.jar
