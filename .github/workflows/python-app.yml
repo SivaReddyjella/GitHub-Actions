@@ -36,4 +36,4 @@ jobs:
     - name: Test in src directory
       run: |
         cd src
-        python -m pytest addition.py
+        python -m test addition.py
