@@ -24,7 +24,7 @@ jobs:
         working-directory: src  # Assuming pom.xml is in src directory
 
       - name: Test
-        run: mvn test site
+        run: mvn test
         working-directory: src  # Assuming pom.xml is in src directory
 
       - name: Deploy
